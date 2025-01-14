@@ -261,6 +261,7 @@ async def process_expense_id(message: Message, state: FSMContext):
             await message.answer("Траты с таким ID не найдены.")
             return
 
+
         # Удаление трат
         cursor.execute("DELETE FROM transactions WHERE id = %s", (expense_id,))
         conn.commit()
