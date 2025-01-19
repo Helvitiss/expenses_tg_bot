@@ -1,10 +1,5 @@
 # Игнорируем виртуальное окружение
 .venv
-*.pyc
-__pycache__/
-
-
+.env
 # Прочие игнорируемые файлы
-.idea/
-.DS_Store
 config/config.py
