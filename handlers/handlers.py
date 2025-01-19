@@ -264,6 +264,7 @@ async def start_add_income(message: Message, state: FSMContext):
     await state.set_state(AddIncomeState.waiting_for_amount)
 
 
+
 @router.message(AddIncomeState.waiting_for_amount)
 async def process_income_amount(message: Message, state: FSMContext):
     try:
