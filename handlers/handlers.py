@@ -1,13 +1,14 @@
 from datetime import datetime
+
 import aiomysql
 from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, CallbackQuery
-from database import get_user_categories, connect_db, upload_new_expense, get_current_budget, add_income
-from keyboards import main_menu_keyboard, create_category_keyboard
 
+from database import connect_db, upload_new_expense, get_current_budget, add_income, get_user_categories
+from keyboards import main_menu_keyboard, create_category_keyboard
 router = Router()
 
 
@@ -34,7 +35,8 @@ async def start(message: Message):
     async with await connect_db() as conn:
         try:
             async with conn.cursor() as cursor:
-                await cursor.execute("INSERT IGNORE INTO users (user_id, username) VALUES (%s, %s)", (user_id, username))
+                await cursor.execute("INSERT IGNORE INTO users (user_id, username) VALUES (%s, %s)",
+                                     (user_id, username))
                 await conn.commit()
             await message.answer("Выберите команду:", reply_markup=main_menu_keyboard)
         except Exception as e:
@@ -262,7 +264,6 @@ async def process_expense_id(message: Message, state: FSMContext):
 async def start_add_income(message: Message, state: FSMContext):
     await message.answer("Введите сумму вашего дохода:")
     await state.set_state(AddIncomeState.waiting_for_amount)
-
 
 
 @router.message(AddIncomeState.waiting_for_amount)

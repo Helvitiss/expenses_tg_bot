@@ -16,7 +16,6 @@ main_menu_keyboard = ReplyKeyboardMarkup(
 # Функция для генерации клавиатуры для выбора категорий
 def create_category_keyboard(categories):
     builder = InlineKeyboardBuilder()
-    print(categories)
     for category in categories:
         builder.button(text=category['category_name'],
                        callback_data=f"category_{category['category_id']}_{category['category_name']}")

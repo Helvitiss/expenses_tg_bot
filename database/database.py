@@ -1,6 +1,5 @@
 import aiomysql
-from config.config import DB_CONFIG  # Предполагается, что вы используете конфигурацию базы данных
-
+from config.config import DB_CONFIG
 # Функция для подключения к БД
 async def connect_db():
     # Асинхронное подключение к базе данных
@@ -22,6 +21,7 @@ async def get_user_categories(user_id):
                     FROM categories 
                     WHERE user_id = %s
                 """, (user_id,))
+
                 return await cursor.fetchall()
         except Exception as e:
             print(f"Ошибка при получении категорий: {e}")

@@ -1,8 +1,7 @@
 import asyncio
 from aiogram import Bot, Dispatcher
 from config.config import BOT_TOKEN
-from handlers.handlers import router
-
+from handlers import router
 # Инициализация бота и диспетчера
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
