@@ -70,6 +70,8 @@
 - Aiogram
 - Aiomysql
 - Dotenv
+- Pytest
+  
 
 ## Вклад
 
